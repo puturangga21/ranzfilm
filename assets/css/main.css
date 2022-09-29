@@ -521,6 +521,10 @@ input ~ .checked-radio-bg {
   text-align: center;
 }
 
+.category-card.highlight {
+  background-color: var(--azure);
+}
+
 .category-card:hover {
   background-color: var(--light-azure);
 }

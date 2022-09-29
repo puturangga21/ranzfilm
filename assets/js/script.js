@@ -96,7 +96,7 @@ function setGenre() {
   categoryEl.innerHTML = "";
   genres.forEach((genre) => {
     const t = document.createElement("div");
-    t.classList.add("category-card");
+    t.classList.add("category-card"); //tag
     t.id = genre.id;
     t.innerText = genre.name;
     t.addEventListener("click", () => {
@@ -115,9 +115,23 @@ function setGenre() {
       }
       console.log(selectedGenre);
       getMovies(API_URL + "&with_genres=" + encodeURI(selectedGenre.join(",")));
+      highlightSelection();
     });
     categoryEl.append(t);
   });
+}
+
+function highlightSelection() {
+  const tags = document.querySelectorAll(".category-card");
+  tags.forEach((tag) => {
+    tag.classList.remove("highlight");
+  });
+  if (selectedGenre.length != 0) {
+    selectedGenre.forEach((id) => {
+      const highlightedTag = document.getElementById(id);
+      highlightedTag.classList.add("highlight");
+    });
+  }
 }
 
 getMovies(API_URL);
